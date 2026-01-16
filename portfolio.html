@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Portfolio of Milin Suthar — Web Developer / Designer" />
+  <title>Milin Suthar — Portfolio</title>
+
+  <!-- Optional: Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --faint: rgba(255,255,255,.5);
+      --stroke: rgba(255,255,255,.14);
+      --brand: #7c3aed;   /* violet */
+      --brand2:#22c55e;   /* green */
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+      --ring: 0 0 0 4px rgba(124,58,237,.25);
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    /* Light mode */
+    html[data-theme="light"]{
+      --bg: #f6f7fb;
+      --panel: rgba(0,0,0,.04);
+      --panel-2: rgba(0,0,0,.06);
+      --text: rgba(0,0,0,.9);
+      --muted: rgba(0,0,0,.65);
+      --faint: rgba(0,0,0,.5);
+      --stroke: rgba(0,0,0,.12);
+      --shadow: 0 18px 50px rgba(0,0,0,.12);
+      --ring: 0 0 0 4px rgba(124,58,237,.18);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.35), transparent 55%),
+                  radial-gradient(1000px 600px at 95% 10%, rgba(34,197,94,.25), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x:hidden;
+    }
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display:block; }
+    .container{
+      width: min(var(--max), 100% - 40px);
+      margin: 0 auto;
+    }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.75), rgba(11,18,32,.35));
+      border-bottom: 1px solid var(--stroke);
+    }
+    html[data-theme="light"] .nav{
+      background: linear-gradient(to bottom, rgba(246,247,251,.85), rgba(246,247,251,.55));
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .brand-badge{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), #3b82f6);
+      box-shadow: 0 10px 30px rgba(124,58,237,.35);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    html[data-theme="light"] .brand-badge{
+      border-color: rgba(0,0,0,.06);
+    }
+    .nav-links{
+      display:flex;
+      gap: 18px;
+      align-items:center;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .nav-links a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: background .25s var(--ease), color .25s var(--ease);
+    }
+    .nav-links a:hover{
+      background: var(--panel);
+      color: var(--text);
+    }
+
+    .nav-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      color: var(--text);
+      transition: transform .18s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+      box-shadow: none;
+      cursor: pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: var(--panel-2); }
+    .btn:focus{ outline: none; box-shadow: var(--ring); }
+    .btn-primary{
+      border: 1px solid rgba(124,58,237,.35);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(59,130,246,.85));
+      box-shadow: 0 18px 50px rgba(124,58,237,.25);
+    }
+    .btn-primary:hover{ filter: brightness(1.02); }
+    .icon{
+      width: 18px; height: 18px; opacity: .9;
+    }
+
+    /* Mobile nav */
+    .burger{ display:none; }
+    .mobile-menu{
+      display:none;
+      border-top: 1px solid var(--stroke);
+      padding: 10px 0 16px;
+    }
+    .mobile-menu a{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .mobile-menu a:hover{ background: var(--panel); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      padding: 64px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .kicker{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    html[data-theme="light"] .kicker{
+      background: rgba(0,0,0,.03);
+    }
+    .dot{
+      width: 9px; height: 9px;
+      border-radius: 999px;
+      background: var(--brand2);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.18);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .hero-cta{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .meta-row{
+      margin-top: 20px;
+      display:flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .meta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+    }
+
+    /* Profile card */
+    .card{
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    html[data-theme="light"] .card{
+      background: rgba(255,255,255,.7);
+    }
+    .profile{
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .profile::before{
+      content:"";
+      position:absolute;
+      inset: -40px -40px auto auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 60%);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+    .avatar{
+      width: 78px;
+      height: 78px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      border: 1px solid var(--stroke);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: .5px;
+    }
+    html[data-theme="light"] .avatar{
+      background: linear-gradient(135deg, rgba(0,0,0,.05), rgba(0,0,0,.02));
+    }
+    .profile h3{ margin: 14px 0 4px; font-size: 18px; }
+    .profile p{ margin: 0 0 14px; color: var(--muted); }
+    .chips{ display:flex; flex-wrap: wrap; gap: 8px; }
+    .chip{
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text);
+      background: rgba(124,58,237,.16);
+      border: 1px solid rgba(124,58,237,.25);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    html[data-theme="light"] .chip{
+      background: rgba(124,58,237,.12);
+    }
+
+    /* Sections */
+    section{ padding: 46px 0; }
+    .section-head{
+      display:flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: -0.4px;
+    }
+    .section-head p{
+      margin:0;
+      color: var(--muted);
+      max-width: 62ch;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .grid{
+      display:grid;
+      gap: 14px;
+    }
+
+    /* Projects */
+    .projects{
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .project{
+      grid-column: span 6;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      transition: transform .2s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+      position: relative;
+      overflow:hidden;
+    }
+    .project:hover{
+      transform: translateY(-3px);
+      background: var(--panel-2);
+      border-color: rgba(124,58,237,.35);
+    }
+    .proj-top{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+    html[data-theme="light"] .badge{
+      background: rgba(0,0,0,.02);
+    }
+    .project h3{ margin: 0 0 6px; font-size: 16px; }
+    .project p{ margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; flex-wrap:wrap; gap: 8px; }
+    .tag{
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--faint);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--stroke);
+    }
+    html[data-theme="light"] .tag{
+      background: rgba(0,0,0,.03);
+    }
+    .proj-actions{
+      display:flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .link{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 13px;
+      color: rgba(255,255,255,.9);
+      padding: 9px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      transition: background .2s var(--ease), transform .18s var(--ease);
+    }
+    html[data-theme="light"] .link{
+      color: rgba(0,0,0,.85);
+      background: rgba(0,0,0,.02);
+    }
+    .link:hover{ transform: translateY(-1px); background: rgba(124,58,237,.14); border-color: rgba(124,58,237,.28); }
+
+    /* Skills / Experience */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .panel{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+    }
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .skill{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    html[data-theme="light"] .skill{
+      background: rgba(0,0,0,.02);
+    }
+    .timeline{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .role{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
+    html[data-theme="light"] .role{
+      background: rgba(0,0,0,.02);
+    }
+    .role-top{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap: 12px;
+    }
+    .role h4{ margin:0; font-size: 14px; }
+    .role .when{ color: var(--faint); font-weight: 800; font-size: 12px; }
+    .role p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
+    /* Testimonials */
+    .testimonials{
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .quote{
+      grid-column: span 4;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      position: relative;
+      overflow:hidden;
+    }
+    .quote::before{
+      content:"“";
+      position:absolute;
+      top:-6px; left: 12px;
+      font-size: 56px;
+      font-weight: 900;
+      color: rgba(124,58,237,.25);
+      line-height: 1;
+    }
+    .quote p{ margin: 18px 0 12px; color: var(--muted); font-weight: 600; font-size: 14px; }
+    .quote .who{ display:flex; gap: 10px; align-items:center; }
+    .who .mini{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      display:grid; place-items:center;
+      font-weight: 900;
+    }
+    html[data-theme="light"] .who .mini{
+      background: rgba(0,0,0,.03);
+    }
+    .who b{ font-size: 13px; display:block; }
+    .who span{ font-size: 12px; color: var(--faint); font-weight: 800; }
+
+    /* Contact */
+    form{
+      display:grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    input, textarea{
+      width:100%;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding: 12px 12px;
+      font-weight: 650;
+      font-family: inherit;
+      outline: none;
+      transition: box-shadow .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+    }
+    html[data-theme="light"] input,
+    html[data-theme="light"] textarea{
+      background: rgba(0,0,0,.02);
+    }
+    input:focus, textarea:focus{
+      box-shadow: var(--ring);
+      border-color: rgba(124,58,237,.35);
+      background: rgba(124,58,237,.08);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+
+    /* Footer */
+    footer{
+      padding: 30px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--stroke);
+      margin-top: 30px;
+    }
+    .footer-inner{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .social{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+      will-change: transform, opacity;
+    }
+    .reveal.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .projects .project{ grid-column: span 12; }
+      .testimonials .quote{ grid-column: span 12; }
+      .two-col{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px){
+      .nav-links{ display:none; }
+      .burger{ display:inline-flex; }
+      .mobile-menu{ display:block; }
+      .row{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>Milin Suthar</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            Menu
+          </button>
+
+          <button class="btn" id="themeBtn" aria-label="Toggle theme">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 3a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0V4a1 1 0 0 0-1-1Z"/>
+              <path d="M12 19a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/>
+              <path d="M4 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1h1a1 1 0 0 0 0-2H4Z"/>
+              <path d="M19 12a1 1 0 0 0 1 1h1a1 1 0 0 0 0-2h-1a1 1 0 0 0-1 1Z"/>
+              <path d="M6.34 6.34a1 1 0 0 0 0 1.41l.7.7a1 1 0 1 0 1.41-1.41l-.7-.7a1 1 0 0 0-1.41 0Z"/>
+              <path d="M16.95 16.95a1 1 0 0 0 0 1.41l.7.7a1 1 0 1 0 1.41-1.41l-.7-.7a1 1 0 0 0-1.41 0Z"/>
+              <path d="M17.66 6.34a1 1 0 0 0-1.41 0l-.7.7a1 1 0 1 0 1.41 1.41l.7-.7a1 1 0 0 0 0-1.41Z"/>
+              <path d="M7.05 16.95a1 1 0 0 0-1.41 0l-.7.7a1 1 0 1 0 1.41 1.41l.7-.7a1 1 0 0 0 0-1.41Z"/>
+              <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/>
+            </svg>
+            Theme
+          </button>
+
+          <a class="btn btn-primary" href="#contact">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 4h16v16H4z" opacity=".25"/>
+              <path d="M4 8l8 5 8-5"/>
+            </svg>
+            Hire Me
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="reveal">
+          <span class="kicker"><span class="dot"></span> Available for freelance & full-time roles</span>
+          <h1>Hi, I’m <span style="color:rgba(124,58,237,.98)">Milin Suthar</span> — I build fast, modern web experiences.</h1>
+          <p class="lead">
+            I’m a <b>Full-Stack Developer</b> specializing in <b>Laravel</b>, <b>React</b>, and clean UI.
+            I focus on performance, scalability, and pixel-perfect design that feels premium.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projects">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 5v14"/>
+                <path d="M5 12h14"/>
+              </svg>
+              View Projects
+            </a>
+            <a class="btn" href="#" onclick="downloadResume(event)">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 3v12"/>
+                <path d="M8 11l4 4 4-4"/>
+                <path d="M4 21h16"/>
+              </svg>
+              Download Resume
+            </a>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/>
+                <path d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+              </svg>
+              India (Remote)
+            </div>
+            <div class="meta">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M8 7V3h8v4"/>
+                <path d="M4 7h16v14H4z"/>
+                <path d="M9 12h6"/>
+              </svg>
+              3+ Years Experience
+            </div>
+            <div class="meta">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20 7l-8 8-4-4-4 4"/>
+              </svg>
+              Performance-first builds
+            </div>
+          </div>
+        </div>
+
+        <aside class="card profile reveal">
+          <div class="avatar" aria-label="Initials">MS</div>
+          <h3>Milin Suthar</h3>
+          <p>Full-Stack Developer • UI-focused • Laravel / React</p>
+          <div class="chips" aria-label="Highlights">
+            <span class="chip">Laravel</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">React</span>
+            <span class="chip">UI/UX</span>
+            <span class="chip">Performance</span>
+          </div>
+
+          <div style="margin-top:14px; display:grid; gap:10px;">
+            <a class="btn" href="mailto:youremail@example.com">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 4h16v16H4z" opacity=".25"/>
+                <path d="M4 8l8 5 8-5"/>
+              </svg>
+              youremail@example.com
+            </a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M9 19c-4 1-4-2-5-2"/>
+                <path d="M15 19v-3.5c0-1 .1-1.4-.5-2 2 0 4-.5 4-4.5 0-1-.4-2-1-2.5.1-.3.5-1.5-.1-2.5 0 0-1-.3-2.8 1a9.6 9.6 0 0 0-5.2 0C7.6 5.2 6.6 5.5 6.6 5.5c-.6 1-.2 2.2-.1 2.5C5.9 8.5 5.5 9.5 5.5 10.5c0 4 2 4.5 4 4.5-.3.3-.5.8-.5 1.6V19"/>
+              </svg>
+              GitHub
+            </a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6 9v12"/>
+                <path d="M6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/>
+                <path d="M10 9v12"/>
+                <path d="M10 14c0-3 4-3 4 0v7"/>
+                <path d="M14 14c0-3 4-3 4 0v7"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Featured Projects</h2>
+          <p>Swap these with your real projects. Each card is designed for clarity, credibility, and quick scanning.</p>
+        </div>
+      </div>
+
+      <div class="grid projects">
+        <article class="project reveal">
+          <div class="proj-top">
+            <span class="badge">🚀 SaaS Dashboard</span>
+            <span class="badge">2025</span>
+          </div>
+          <h3>Society Management System</h3>
+          <p>Admin panel for members, maintenance billing, payments, and reporting with role-based access.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">Auth</span><span class="tag">DataTables</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link" href="#" onclick="demoAlert(event)">Live Demo
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M7 17L17 7"/>
+                <path d="M10 7h7v7"/>
+              </svg>
+            </a>
+            <a class="link" href="#" onclick="demoAlert(event)">Case Study</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="proj-top">
+            <span class="badge">🗺️ API Integration</span>
+            <span class="badge">2025</span>
+          </div>
+          <h3>Distance & Route Checker</h3>
+          <p>Multi-mode route summaries (driving, transit, walking, bicycling) using Google Routes API with clean UI.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">Google Routes API</span><span class="tag">Caching</span><span class="tag">UI</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link" href="#" onclick="demoAlert(event)">Live Demo</a>
+            <a class="link" href="#" onclick="demoAlert(event)">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="proj-top">
+            <span class="badge">📱 Mobile UI</span>
+            <span class="badge">2024</span>
+          </div>
+          <h3>React Native Admin App</h3>
+          <p>Expo-based mobile admin experience with card-first design, lists, and detail views.</p>
+          <div class="tags">
+            <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">API</span><span class="tag">UX</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link" href="#" onclick="demoAlert(event)">Preview</a>
+            <a class="link" href="#" onclick="demoAlert(event)">Screens</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="proj-top">
+            <span class="badge">🧩 Workflow</span>
+            <span class="badge">2024</span>
+          </div>
+          <h3>Multi-step Site Creation API</h3>
+          <p>Structured JSON ingestion and persistence across multiple tables with validation and audit-friendly design.</p>
+          <div class="tags">
+            <span class="tag">Laravel</span><span class="tag">Validation</span><span class="tag">Eloquent</span><span class="tag">Transactions</span>
+          </div>
+          <div class="proj-actions">
+            <a class="link" href="#" onclick="demoAlert(event)">Architecture</a>
+            <a class="link" href="#" onclick="demoAlert(event)">Repo</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS + EXPERIENCE -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Skills</h2>
+          <p>Show what you’re strong at + what you ship with consistently.</p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel reveal">
+          <h3 style="margin:0 0 6px;">Core</h3>
+          <p style="margin:0; color:var(--muted); font-weight:600; font-size:14px;">High-impact skills clients and companies care about.</p>
+          <div class="skills">
+            <span class="skill">Laravel</span>
+            <span class="skill">REST APIs</span>
+            <span class="skill">MySQL</span>
+            <span class="skill">React</span>
+            <span class="skill">React Native</span>
+            <span class="skill">Authentication</span>
+            <span class="skill">Performance</span>
+            <span class="skill">UI/UX</span>
+          </div>
+        </div>
+
+        <div class="panel reveal" id="experience">
+          <h3 style="margin:0 0 6px;">Experience</h3>
+          <p style="margin:0; color:var(--muted); font-weight:600; font-size:14px;">Replace with your real roles, clients, or freelance projects.</p>
+
+          <div class="timeline">
+            <div class="role">
+              <div class="role-top">
+                <div>
+                  <h4>Full-Stack Developer — Freelance</h4>
+                  <p class="when">2023 — Present</p>
+                </div>
+              </div>
+              <p>Built admin panels, payment flows, and scalable APIs with Laravel; delivered modern UIs with clean component patterns.</p>
+            </div>
+
+            <div class="role">
+              <div class="role-top">
+                <div>
+                  <h4>Web Developer — Company/Client Name</h4>
+                  <p class="when">2022 — 2023</p>
+                </div>
+              </div>
+              <p>Improved performance, implemented best-practice DB schemas, and shipped production features on time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>What People Say</h2>
+          <p>Even 2–3 real testimonials increases trust a lot. Keep them short and specific.</p>
+        </div>
+      </div>
+
+      <div class="grid testimonials">
+        <div class="quote reveal">
+          <p>Clear communication and excellent delivery. The UI looks premium and the backend is solid.</p>
+          <div class="who">
+            <div class="mini">A</div>
+            <div>
+              <b>Client Name</b>
+              <span>Founder</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote reveal">
+          <p>Fast, reliable, and proactive. Great attention to detail and performance.</p>
+          <div class="who">
+            <div class="mini">B</div>
+            <div>
+              <b>Manager Name</b>
+              <span>Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote reveal">
+          <p>Delivered ahead of schedule and the project structure was very clean and maintainable.</p>
+          <div class="who">
+            <div class="mini">C</div>
+            <div>
+              <b>Teammate Name</b>
+              <span>Developer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Contact</h2>
+          <p>Use this form with a backend (PHP/Laravel) or a service like Formspree. This demo shows a success message only.</p>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <form id="contactForm">
+          <div class="row">
+            <input required name="name" placeholder="Milin Suthar" />
+            <input required type="email" name="email" placeholder="Email address" />
+          </div>
+          <input name="subject" placeholder="Subject (optional)" />
+          <textarea required name="message" placeholder="Tell me about your project..."></textarea>
+
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn btn-primary" type="submit">Send Message</button>
+            <span id="formMsg" style="color:var(--muted); font-weight:700;"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span style="font-weight:900; color:var(--text);">Milin Suthar</span>
+          <span>•</span>
+          <span>© <span id="year"></span> All rights reserved</span>
+        </div>
+
+        <div class="social">
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="mailto:youremail@example.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === "#") return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // close mobile menu on click
+        closeMobileMenu();
+      });
+    });
+
+    // Theme toggle with localStorage
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Mobile menu toggle
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMobileMenu(){
+      mobileMenu.hidden = false;
+      burger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMobileMenu(){
+      mobileMenu.hidden = true;
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    burger?.addEventListener('click', () => {
+      if (mobileMenu.hidden) openMobileMenu();
+      else closeMobileMenu();
+    });
+
+    // Reveal on scroll
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => io.observe(el));
+
+    // Contact form demo
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formMsg.textContent = "✅ Message ready (connect this form to a backend to actually send).";
+      form.reset();
+      setTimeout(() => formMsg.textContent = "", 4500);
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Demo buttons
+    function demoAlert(e){
+      e.preventDefault();
+      alert("Replace this link with your real Live Demo / Case Study URL.");
+    }
+    window.demoAlert = demoAlert;
+
+    function downloadResume(e){
+      e.preventDefault();
+      alert("Add your resume file and update this button to download it (e.g., href='resume.pdf').");
+    }
+    window.downloadResume = downloadResume;
+  </script>
+</body>
+</html>
